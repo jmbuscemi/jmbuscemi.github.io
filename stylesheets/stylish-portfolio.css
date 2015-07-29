@@ -73,7 +73,7 @@ hr.small {
     height: 100%;
     margin-right: -250px;
     overflow-y: auto;
-    background: rgba(82, 82, 82, 0.9);
+    background: rgba(82, 82, 82, 1.0);
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -88,6 +88,7 @@ hr.small {
     margin: 0;
     padding: 0;
     list-style: none;
+    background: rgba(82, 82, 82, 1.0);
 }
 
 .sidebar-nav li {
@@ -98,7 +99,7 @@ hr.small {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999;
+    color: #0ce3ac;
 }
 
 .sidebar-nav li a:hover {
@@ -119,7 +120,7 @@ hr.small {
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999;
+    color: #0ce3ac;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
