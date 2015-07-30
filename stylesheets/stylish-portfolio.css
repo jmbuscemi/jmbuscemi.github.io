@@ -73,7 +73,7 @@ hr.small {
   height: 100%;
   margin-right: -250px;
   overflow-y: auto;
-  background: rgba(82, 82, 82, 1.0);
+  background: rgb(70, 69, 69);
   -webkit-transition: all 0.4s ease 0s;
   -moz-transition: all 0.4s ease 0s;
   -ms-transition: all 0.4s ease 0s;
@@ -88,7 +88,7 @@ hr.small {
   margin: 0;
   padding: 0;
   list-style: none;
-  background: rgba(82, 82, 82, 1.0);
+  background: rgb(70, 69, 69);
 }
 
 .sidebar-nav li {
@@ -172,9 +172,17 @@ hr.small {
 /* About */
 
 .about {
-  padding: 50px 0;
-  background: #d6d6d6;
-  color: #222;
+  display: table;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../images/about.jpg) no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  color: #fff;
+  padding: 18% 22%;
 }
 
 /* Services */
@@ -245,4 +253,8 @@ hr.small {
 
 footer {
   padding: 100px 0;
+}
+
+#about-separator-line{
+  border-top: 1px solid #fff;
 }
