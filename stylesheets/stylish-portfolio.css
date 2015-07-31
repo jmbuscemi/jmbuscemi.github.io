@@ -258,3 +258,7 @@ footer {
 #about-separator-line{
   border-top: 1px solid #fff;
 }
+
+#contact-link:hover {
+  color: rgba(12, 227, 172, 0.4);
+}
