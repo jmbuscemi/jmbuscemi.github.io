@@ -17,7 +17,7 @@
     <link href="stylesheets/bootstrap.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   </head>
 
@@ -37,6 +37,9 @@
           <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
         </li>
         <li>
+          <a href="#fact-box" onclick = $("#menu-close").click(); >Random John Facts</a>
+        </li>
+        <li>
           <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
         </li>
       </ul>
@@ -49,7 +52,7 @@
         <h3>Ruby Developer</h3>
         <h4><a href="mailto:jmbuscemi@gmail.com">jmbuscemi@gmail.com</a></h4>
         <br>
-        <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+        <a href="#about" class="btn btn-default btn-lg">Find Out More</a>
       </div>
     </header>
 
@@ -117,9 +120,10 @@
     </section>
 
     <!-- Callout -->
-    <aside class="callout">
-      <div class="text-vertical-center">
-        <h1>I'm Detail Oriented</h1>
+    <aside id="fact-box" class="callout">
+      <div id="fact-div" class="text-vertical-center">
+        <h1 id="fact-text"></h1>
+        <button class="btn btn-default" onclick="onClick()">Generate Random Fact!</button>
       </div>
     </aside>
 
@@ -146,7 +150,7 @@
             </ul>
             <hr class="small">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-small btn-dark" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-small btn-default" data-toggle="modal" data-target="#myModal">
               View Resume
             </button>
 
@@ -159,7 +163,9 @@
                     <h4 class="modal-title" id="johnsResumeModal">My Resume</h4>
                   </div>
                   <div class="modal-body">
-                    <object class="resume" data="resume/jmb_resume_2015-07-30.pdf#view=FitH" type='application/pdf'></object>
+                    <object class="resume" data="resume/jmb_resume_2015-07-30.pdf#view=FitH" type='application/pdf'>
+                      <p> It appears you're browser is unable to view this pdf.  No worries...you can download it using the button below! </p>
+                    </object>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-small btn-default" data-dismiss="modal">Close</button>
@@ -183,8 +189,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Main Javascript -->
+    <!-- Custom Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/random_facts.js"></script>
 
   </body>
 </html>
