@@ -43,7 +43,7 @@ $link-hover-decoration: underline !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -136,7 +136,7 @@ $table-bg-hover:                darken($gray-light, 3%) !default;
 $table-bg-active:               $table-bg-hover !default;
 
 //** Border color for table and cell borders.
-$table-border-color:            $gray-light !default;  
+$table-border-color:            $gray-light !default;
 
 
 //== Buttons
@@ -759,7 +759,7 @@ $thumbnail-caption-padding:   9px !default;
 
 //== Wells
 //
-//## 
+//##
 
 $well-bg:                     $gray-light !default;
 $well-border:                 transparent !default;
