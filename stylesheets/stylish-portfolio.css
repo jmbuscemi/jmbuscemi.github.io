@@ -207,6 +207,8 @@ hr.small {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  position: relative;
+  text-align: center;
 }
 
 /* Portfolio */
@@ -266,4 +268,8 @@ footer {
 .resume {
   width: 100%;
   height: 100%;
+}
+
+#fact-button {
+  margin-bottom: -18%;
 }
