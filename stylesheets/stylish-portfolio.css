@@ -273,3 +273,37 @@ footer {
 #fact-button {
   margin-bottom: -15%;
 }
+
+#portfolio-link:hover {
+  color: rgba(6, 117, 89, 0.5);
+}
+
+.portfolio-img-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.portfolio-img-container:hover a {
+    opacity: 1;
+    top: 0;
+    z-index: 2;
+}
+
+.portfolio-img-container:hover a span {
+    top: 37%;
+    position: absolute;
+    left: 40%;
+    right: 0;
+}
+
+.portfolio-img-container a {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    color: inherit;
+}
