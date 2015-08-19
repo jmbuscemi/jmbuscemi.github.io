@@ -226,7 +226,7 @@ hr.small {
 }
 
 .img-portfolio:hover {
-  opacity: 0.88;
+  opacity: 0.9;
 }
 
 /* Call to Action */
@@ -288,26 +288,24 @@ footer {
     overflow: hidden;
 }
 
-.portfolio-img-container:hover a {
+.portfolio-img-container:hover a span {
     opacity: 1;
     top: 0;
     z-index: 2;
 }
 
-.portfolio-img-container:hover a span {
-    top: 37%;
-    position: absolute;
-    left: 40%;
-    right: 0;
-}
-
 .portfolio-img-container a {
     display: block;
     position: absolute;
-    opacity: 0;
+    opacity: 1;
     left: 0;
     bottom: 0;
     right: 0;
+    top: 37%;
     text-align: center;
     color: inherit;
+}
+
+#project-title {
+  font-size: 1.4em;
 }
