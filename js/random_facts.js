@@ -8,7 +8,7 @@ var randomFact = {
     {"text":"Go Wolfpack!!!"},
     {"text":"I write and perform my own music"},
     {"text":"I like math"},
-    {"text":"You might fly on a jet engine I helped develop"}
+    {"text":"You might fly on a jet with an engine I helped develop"}
   ]
 };
 
