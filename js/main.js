@@ -14,11 +14,11 @@ $(function() {
   });
 });
 
-// Change Navbar to Active
-$(".nav li a").click(function(){
-  $(".nav").find(".active").removeClass("active");
-  $(this).parent().addClass("active");
-});
+// // Change Navbar to Active
+// $(".nav li a").click(function(){
+//   $(".nav").find(".active").removeClass("active");
+//   $(this).parent().addClass("active");
+// });
 
 // Close collapsed menu on click
 $(".nav li a").click(function(){
