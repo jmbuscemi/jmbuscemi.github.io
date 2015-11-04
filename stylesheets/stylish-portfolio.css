@@ -309,3 +309,15 @@ footer {
 #project-title {
   font-size: 1.4em;
 }
+
+#user_gravatar {
+  margin-top: -24px;
+  margin-right: 0px;
+  position: relative;
+  top: 14px;
+  height: 40px;
+  width: 40px;
+  box-shadow: 0 0 0 1px rgba(20,28,34,0.2);
+  border: 2px solid white;
+  border-radius: 22px;
+}
