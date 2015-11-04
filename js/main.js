@@ -26,6 +26,18 @@ $(function() {
   });
 });
 
+// Change Navbar to Active
+$(".nav li a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
+
+// Close collapsed menu on click
+$(".nav li a").on("click", function(){
+  $(".navbar-collapse").collapse('hide');
+});
+
+
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 
