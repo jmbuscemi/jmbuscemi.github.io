@@ -3062,7 +3062,7 @@ fieldset[disabled] a.btn {
 }
 .btn-default {
   color: #ffffff;
-  background-color: #464545;
+  background-color: rgb(68, 67, 67);
   border-color: #464545;
 }
 .btn-default:focus,
@@ -4219,7 +4219,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 60px;
-  margin-bottom: 21px;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -4546,8 +4545,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: rgba(70, 69, 69, 0.95);
+  background-color: rgba(68, 67, 67, 1);
   border-color: transparent;
+  margin-bottom: 21px;
 }
 .navbar-default .navbar-brand {
   color: #ffffff;
