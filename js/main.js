@@ -1,24 +1,17 @@
-// Scrolls to the selected menu item on the page
-$(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    //Figure out code to remove $('.spy-active') to stop scrollspy on smooth scroll.
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html,body').animate({
-            scrollTop: target.offset().top
-        }, 1000);
-        return false;
-      }
-    }
-  });
-});
-
-// Change Navbar to Active
-$(".nav li a").click(function(){
+// Scrolls to selected menu item, changes it's class to active,
+// and disables scrollspy watcher
+$(".nav li a[href^='#']").on('click', function(e) {
+  $('#navbar').removeClass('spy-active');
   $(".nav").find(".active").removeClass("active");
   $(this).parent().addClass("active");
+  e.preventDefault();
+  var hash = this.hash;
+  $('html, body').animate({
+    scrollTop: $(hash).offset().top
+  }, 1000, function(){
+    window.location.hash = hash;
+    $('#navbar').addClass('spy-active');
+  });
 });
 
 //Change Navbar to Active on Scroll via scrollspy
