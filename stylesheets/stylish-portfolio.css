@@ -13,7 +13,7 @@ body {
 }
 
 body {
-  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .text-vertical-center {
@@ -63,71 +63,6 @@ hr.small {
   max-width: 100px;
 }
 
-/* Side Menu */
-
-#sidebar-wrapper {
-  z-index: 1000;
-  position: fixed;
-  right: 0;
-  width: 250px;
-  height: 100%;
-  margin-right: -250px;
-  overflow-y: auto;
-  background: rgb(70, 69, 69);
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-}
-
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background: rgb(70, 69, 69);
-}
-
-.sidebar-nav li {
-  text-indent: 20px;
-  line-height: 40px;
-}
-
-.sidebar-nav li a {
-  display: block;
-  text-decoration: none;
-  color: #0ce3ac;
-}
-
-.sidebar-nav li a:hover {
-  text-decoration: none;
-  color: #fff;
-  background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-  height: 55px;
-  font-size: 18px;
-  line-height: 55px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-  color: #0ce3ac;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
-}
-
 #menu-toggle {
   z-index: 1;
   position: fixed;
@@ -138,16 +73,6 @@ hr.small {
 
 #menu-close {
   padding: 9px 18px 9px 18px;
-}
-
-#sidebar-wrapper.active {
-  right: 250px;
-  width: 250px;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 }
 
 .toggle {
@@ -310,7 +235,7 @@ footer {
   font-size: 1.4em;
 }
 
-#user_gravatar {
+#user-gravatar {
   margin-top: -24px;
   margin-right: 0px;
   position: relative;
@@ -320,4 +245,19 @@ footer {
   box-shadow: 0 0 0 1px rgba(20,28,34,0.2);
   border: 2px solid white;
   border-radius: 22px;
+}
+
+#user-gravatar:hover,
+#user-gravatar:focus {
+  cursor: pointer;
+}
+
+#page-content-wrapper {
+    padding: 20px;
+    position: relative;
+}
+
+.spacer {
+  position: relative;
+  display: inline;
 }
