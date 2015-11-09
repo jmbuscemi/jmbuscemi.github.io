@@ -13,7 +13,7 @@ body {
 }
 
 body {
-  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .text-vertical-center {
@@ -235,7 +235,7 @@ footer {
   font-size: 1.4em;
 }
 
-#user_gravatar {
+#user-gravatar {
   margin-top: -24px;
   margin-right: 0px;
   position: relative;
@@ -245,6 +245,11 @@ footer {
   box-shadow: 0 0 0 1px rgba(20,28,34,0.2);
   border: 2px solid white;
   border-radius: 22px;
+}
+
+#user-gravatar:hover,
+#user-gravatar:focus {
+  cursor: pointer;
 }
 
 #page-content-wrapper {
