@@ -15,12 +15,17 @@ $(".nav li a[href^='#']").on('click', function(e) {
 });
 
 //Change Navbar to Active on Scroll via scrollspy
-$('body').scrollspy({ target: '.spy-active' });
+$('body').scrollspy({ target: '.spy-active', offset: 50});
 
 // Close collapsed menu on click
 $(".nav li a").click(function(){
   $(".navbar-collapse").collapse('hide');
 });
+
+//Bootstrap Tooltip Opt-in
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
