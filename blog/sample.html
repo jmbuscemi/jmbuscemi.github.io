@@ -13,6 +13,8 @@
     <link href="/stylesheets/clean-blog.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <!-- Prism Syntax Highlighting CSS -->
+    <link href="/stylesheets/prism.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -53,7 +55,7 @@
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               <h1>This Is A Sample</h1>
-              <h2 class="subheading">I want to see if I can get colorized code blocks</h2>
+              <h2 class="subheading">I want to implement syntax highlighting in code blocks</h2>
               <span class="meta">Posted by <a href="#contact">John Buscemi</a> on November 10, 2015</span>
             </div>
           </div>
@@ -90,11 +92,15 @@
               that, huh? You should have bargained, Jabba. That's the last
               mistake you'll ever make.
             </p>
-            <p>
-              As you can see, my young apprentice, your friends have failed. Now
-              witness the firepower of this fully armed and operational battle
-              station. Fire at will, Commander. Fire!
-            </p>
+            <pre>
+              <code class="language-ruby">
+                def the_light_side
+                  return true if !the_dark_side || "Rebel"
+                end
+
+                #Luke Skywalker
+              </code>
+            </pre>
             <h2 class="section-heading">Not Bad for a Little Furball</h2>
             <p>
               The data brought to us by the Bothan spies pinpoints the exact
@@ -192,10 +198,10 @@
 
     <!-- jQuery -->
     <script src="/js/vendor/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/vendor/bootstrap.min.js"></script>
-
+    <!-- Prism.js -->
+    <script src="/js/vendor/prism.js"></script>
     <!-- Custom Javascript -->
     <script src="/js/main.js"></script>
   </body>
