@@ -41,7 +41,7 @@ a:focus {
 }
 a img:hover,
 a img:focus {
-  cursor: zoom-in;
+  cursor: pointer;
 }
 blockquote {
   color: #808080;
@@ -214,6 +214,9 @@ hr.large {
   color: #0ce3ac;
   text-decoration: none;
 }
+.intro-header .post-heading .meta a:hover {
+  color: rgba(12, 227, 172, 0.4);
+}
 @media only screen and (min-width: 768px) {
   .intro-header .post-heading h1 {
     font-size: 55px;
@@ -234,6 +237,7 @@ hr.large {
   font-size: 30px;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-weight: 500;
 }
 .post-preview > a > .post-subtitle {
   margin: 0;
@@ -358,8 +362,6 @@ form .row:first-child .floating-label-form-group {
 }
 .pager li > a,
 .pager li > span {
-  /*font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
-  /*text-transform: uppercase;*/
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -367,26 +369,6 @@ form .row:first-child .floating-label-form-group {
   background-color: #0ce3ac;
   border-radius: 0;
 }
-/*.pager {
-  margin: 20px 0 0;
-}
-
-.pager li > a:hover,
-.pager li > a:focus {
-  color: white;
-  background-color: #2c2c2c;
-  border: 1px solid #2c2c2c;
-  border-width: 2px;
-  border-radius: 6px;
-}
-.pager .disabled > a,
-.pager .disabled > a:hover,
-.pager .disabled > a:focus,
-.pager .disabled > span {
-  color: #808080;
-  background-color: #404040;
-  cursor: not-allowed;
-}*/
 ::-moz-selection {
   color: white;
   text-shadow: none;
