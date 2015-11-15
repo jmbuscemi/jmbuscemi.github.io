@@ -87,6 +87,7 @@
                 <code class="language-bash">
 
           mkdir challenge_name
+          cd challenge_name
           touch studentname_challenge_name.rb
                 </code>
               </pre>
@@ -126,7 +127,7 @@
               So I began to research shell commands to remove text from files, add text to files, save changed files, etc.  And found myself wondering why I was even putting terminal commands into a Ruby file and mixing languages.  Can’t Ruby just do that type of stuff for me?  Yes.  The answer is yes.  Here’s how I solved those problems in ruby.
             </p>
             <p>
-              First I removed references to Turbolinks from <code class="language-">views/layout/application.html.erb</code> and commented out the gem in the <code class="language-">Gemfile</code>.  This basically boils down to a opening a file, replacing text with a <code class="language-ruby">gsub</code>, and saving the file.
+              First I removed references to Turbolinks from <code class="language-">views/layout/application.html.erb</code> and commented out the gem in the <code class="language-">Gemfile</code>.  This basically boils down to opening a file, replacing text with a <code class="language-ruby">gsub</code>, and saving the file.
             </p>
             <pre>
               <code class="language-ruby">
@@ -171,7 +172,7 @@
               Nothing too crazy here, and after a few test runs I was able to remove Turbolinks from a Rails app by executing this file from the root of the rails app.  Simple enough right?  Just take this file, copy it into the root of my app, execute the file (with lines added after the methods to call said methods), and then delete it from the app (or add it to the .gitignore).  Yikes…I’ll have to do that for every app I make ad nauseam.  Which made me think: <span class="meta">There must be a better way...a gem!  Gems magically do things for you in apps, I’ll make this a gem.  How do I make a gem?</span>
             </p>
             <p>
-              So I asked around, and my instructor/mentor/colleague, <a href="https://github.com/masonfmatthews">Mason Matthews</a>, pointed me towards the gem <a href="https://github.com/technicalpickles/jeweler">Jeweler</a>.  A gem to make a gem.  Pretty meta.  Reading the Jeweler docs as well as <a href="http://guides.rubygems.org/make-your-own-gem/#your-first-gem">this article</a> from <a href="https://rubygems.org/">Rubygems.org</a> I made a gem.  But how do I run that gem once it’s installed? Reading the <a href="http://guides.rubyonrails.org/generators.html">Rails Docs</a> (hopefully you’re seeing a common theme here…read the docs) I found out that when a Rails generator is run, all public methods in the generator are executed.  This solved my problem of executing the code, but I needed to make a Rails generator.  Yeah, a generator like <code class="language-ruby">rails generate controller</code>, but for <span class="meta">MY</span> gem.  Cool! Here’s how I made the gem a custom generator:
+              So I asked around, and my instructor/mentor/colleague, <a href="https://github.com/masonfmatthews">Mason Matthews</a>, pointed me towards the gem <a href="https://github.com/technicalpickles/jeweler">Jeweler</a>.  A gem to make a gem.  Pretty meta.  Reading the Jeweler docs as well as <a href="http://guides.rubygems.org/make-your-own-gem/#your-first-gem">this article</a> from <a href="https://rubygems.org/">Rubygems.org</a> I made a gem.  But how do I run that gem once it’s installed? Reading the <a href="http://guides.rubyonrails.org/generators.html">Rails Docs</a> (hopefully you’re seeing a common theme here…read the docs) I found out that when a Rails generator is run, all public methods in the generator are executed.  This solved my problem of executing the code, but I needed to make a Rails generator.  Yeah, a generator like <code class="language-ruby">rails generate controller</code>, but for my gem.  Cool! Here’s how I made the gem a custom generator:
             </p>
             <pre>
               <code class="language-ruby">
@@ -188,7 +189,7 @@
               Jeweler allowed me to locally install my gem and test it before releasing it on Rubygems.  And then Jeweler has a rake command to release the gem to the world <code class="language-ruby">rake release</code>.  Classy.
             </p>
             <p>
-              And voila…<a href="https://github.com/jmbuscemi/remove_tl">my gem to remove Turblinks</a> can be used by anyone.  In fact, in the 5 weeks since I released it there have been 513 downloads.  That's pretty cool!  Hopefully I'll figure out another gem to write in the future, and next time I'll be ready to write it quicker.
+              And voila…<a href="https://github.com/jmbuscemi/remove_tl">my gem to remove Turblinks</a> can be used by anyone.  In fact, in the 5 weeks since I released it there have been over 500 downloads.  That's pretty cool!  Hopefully I'll figure out another gem to write in the future, and next time I'll be ready to write it quicker.
             </p>
           </div>
         </div>
