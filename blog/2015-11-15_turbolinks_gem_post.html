@@ -73,104 +73,124 @@
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <p>From the <a href="https://github.com/rails/turbolinks">Turbolinks Repo</a>
               <blockquote>
-                Turbolinks makes following links in your web application faster.
-                Instead of letting the browser recompile the JavaScript and CSS
-                between each page change, it keeps the current page instance alive
-                and replaces only the body (or parts of) and the title in the head.
-                Think CGI vs persistent process.
+                Turbolinks makes following links in your web application faster.  Instead of letting the browser recompile the JavaScript and CSS between each page change, it keeps the current page instance alive and replaces only the body (or parts of) and the title in the head.  Think CGI vs persistent process.
               </blockquote>
             </p>
             <p>
-              That's pretty cool.  And I'd sure like to learn more about that in
-              the future.  Here's my problem: At this stage in my developer career,
-              whether I'm writing the JS or I have a colleague writing it...Turbolinks
-              seems to <em>break</em> the code.  Rather, what we expect
-              to happen isn't happening.
+              That's pretty cool.  Turbolinks is doing some fascinating things.  But here’s my problem: at this stage in my career as a developer, whether I’m writing the JS or a colleague is…Turbolinks seems to break our code.  Well, to give credit where it’s due, Turbolinks is doing what it’s supposed to but, as a result, our code is behaving in an unexpected way.  And someday I’ll really grind through the Turbolinks docs and make my JS work with Turbolinks.
             </p>
             <p>
-              Bring me Solo and the Wookiee. They will all suffer for this outrage.
-              Han! Luke! Are you all right? Fine. Together again, huh? Wouldn't
-              miss it. How are we doing? The same as always. That bad, huh?
-              Where's Leia? I'm here. Oh, dear. His High Exaltedness, the great
-              Jabba the Hutt, has decreed that you are to be terminated immediately.
-              Good, I hate long waits. You will therefore be taken to the Dune
-              Sea and cast into the pit of Carkoon, the nesting place of the
-              all-powerful Sarlacc. Doesn't sound so bad. In his belly, you will
-              find a new definition of pain and suffering, as you are slowly
-              digested over a thousand years. On second thought, let's pass on
-              that, huh? You should have bargained, Jabba. That's the last
-              mistake you'll ever make.
+              But for now, in every rails app I make I <a href="http://blog.steveklabnik.com/posts/2013-06-25-removing-turbolinks-from-rails-4">remove Turbolinks</a>. Easy enough when you have to do that once.  But I found myself doing that over and over, sometimes forgetting one step, then double checking to make sure I didn’t miss a step.  This process is ripe for human error and is not DRY at all.  In fact, whenever I do something twice when writing code I immediately think: <span class="meta">“John, you’ve done this before.  Do you think it’s necessary to do it again?”</span> Most of the time, the answer to that question is a resounding <span class="meta">“Nope.”</span>
+            </p>
+            <p>
+              In the case of removing Turbolinks from my rails apps, it was a matter of writing a shell script (or something similar) to manipulate the files within an app.  Basically take those three steps from Steve Klabnik’s blog post and automate them with code.  I can even take it a step further and write Ruby code that executes terminal commands.  For instance, one of my duties as a TA was to grade student challenges.  To do so, I had to create executable ruby files from Gists submitted by students.  So rather than doing this:
+              <pre>
+                <code class="language-bash">
+
+          mkdir challenge_name
+          touch studentname_challenge_name.rb
+                </code>
+              </pre>
+            </p>
+            <p>
+              repeatedly for each student name, day after day, for every challenge that the students completed, I wrote the following code:
             </p>
             <pre>
               <code class="language-ruby">
-                def the_light_side
-                  return true if !the_dark_side || "Rebel"
-                end
 
-                #Luke Skywalker
+          def create_files(challenge)
+            `mkdir #{challenge}`
+            names = [“Bob”, “Sarah”, “Jim”, “Alex”,
+                     “Jessie”, “Tim”, “Lauren”]
+            names.length.times do |i|
+              `touch ./#{challenge}/#{names[i].downcase}_#{challenge}.rb`
+            end
+          end
+
+          create_files(ARGV[0])
               </code>
             </pre>
-            <h2 class="section-heading">Not Bad for a Little Furball</h2>
             <p>
-              The data brought to us by the Bothan spies pinpoints the exact
-              location of the Emperor's new battle station. We also know that
-              the weapon systems of this Death Star are not yet operational.
-              With the Imperial Fleet spread throughout the galaxy in a vain
-              effort to engage us, it is relatively unprotected. But most
-              important of all, we've learned that the Emperor himself is
-              personally overseeing the final stages of the construction of this
-              Death Star. Many Bothans died to bring us this information. Admiral
-              Ackbar, please.
+              Then I just execute the file in the terminal, passing it an argument of that day’s challenge name like so:
             </p>
-            <blockquote>
-              Learn about the Force, Luke. Look, I can take you as far as Anchorhead.
-              You can get a transport there to Mos Eisley or wherever you're going.
-              You must do what you feel is right, of course.
-            </blockquote>
+            <pre>
+              <code class="language-bash">
+
+          ruby create_files.rb challenge_name
+              </code>
+            </pre>
             <p>
-              Master. Luke Skywalker, Jedi Knight. I told you not to admit him.
-              I must be allowed to speak. He must be allowed to speak. You
-              weak-minded fool! He's using an old Jedi mind trick.
-              You will bring Captain Solo and the Wookiee to me. Your mind powers
-              will not work on me, boy. Nevertheless, I'm taking Captain Solo and
-              his friends. You can either profit by this... or be destroyed! It's
-              your choice. But I warn you not to underestimate my powers. Master
-              Luke, you're standing on... There will be no bargain, young Jedi.
-              I shall enjoy watching you die. Bascka! Oh, no! The Rancor!
+              And that give me a folder populated with files ready to have the students’ Gists pasted in so that I can run their code.  Of course, having their names in the file is a little code smelly since it’ll need to be changed for a new class of students, or if the current class changes.  And I still need to figure out how to automate populating each file with the Gists, but it’s simple enough now and I learned how to pass an argument from the terminal into a method in Ruby.  Neat!
             </p>
-            <h2 class="section-heading">It's a trap!</h2>
+            <h2 class="section-heading">But I digress...back to the Gem!</h2>
             <p>
-              Welcome, young Skywalker. I have been expecting you. You no longer
-              need those. Guards, leave us. I'm looking forward to completing your
-              training. In time you will call me Master. You're gravely mistaken.
-              You won't convert me as you did my father. Oh, no, my young Jedi.
-              You will find that it is you who are mistaken...about a great many
-              things. His lightsaber. Ah, yes, a Jedi's weapon. Much like your
-              father's. By now you must know your father can never be turned from
-              the dark side. So will it be with you. You're wrong. Soon I'll be
-              dead...and you with me.
+              So I began to research shell commands to remove text from files, add text to files, save changed files, etc.  And found myself wondering why I was even putting terminal commands into a Ruby file and mixing languages.  Can’t Ruby just do that type of stuff for me?  Yes.  The answer is yes.  Here’s how I solved those problems in ruby.
             </p>
-            <a href="#">
-              <img class="img-responsive" src="http://nerdist.com/wp-content/uploads/2015/07/Death-Star-II-07172015.jpg" alt="Hooray Star Wars!">
-            </a>
-            <span class="caption text-muted">
-              Sir, we've lost our bridge deflector shield. Intensify the forward
-              batteries. I don't want anything to get through.
-            </span>
             <p>
-              I think my eyes are getting better. Instead of a big dark blur, I
-              see a big light blur. There's nothing to see. I used to live here,
-              you know. You're gonna die here, you know. Convenient. Just stick
-              close to Chewie and Lando. I've taken care of everything. Oh...
-              great! Soon you will learn to appreciate me. Oh, I'm terribly sor...
-              Artoo! What are you doing here? Well, I can see you're serving drinks,
-              but this place is dangerous. They're going to execute Master Luke and,
-              if we're not careful, us too! Hmm. I wish I had your confidence.
-              Victims of the almighty Sarlacc: His Excellency hopes that you will
-              die honorably. But should any of you wish to beg for mercy, the great
-              Jabba the Hutt will now listen to your pleas.
+              First I removed references to Turbolinks from <code class="language-">views/layout/application.html.erb</code> and commented out the gem in the <code class="language-">Gemfile</code>.  This basically boils down to a opening a file, replacing text with a <code class="language-ruby">gsub</code>, and saving the file.
             </p>
-            <p>Placeholder text by <a href="http://forcemipsum.com/">Forcem Ipsum</a>. Picture from <a href="http://nerdist.com/star-wars-aftermath-excerpt-tells-us-what-happens-after-return-of-the-jedi/">Nerdist</a>.</p>
+            <pre>
+              <code class="language-ruby">
+
+          def remove_turbolinks_from_layout
+            file_name = './app/views/layouts/application.html.erb'
+            text = File.read(file_name)
+            new_contents = text.gsub(/, 'data-turbolinks-track' => true/, "")
+            #Write changes to the file:
+            File.open(file_name, "w") {|file| file.puts new_contents }
+          end
+
+          def remove_turbolinks_from_gemfile
+            file_name = './Gemfile'
+            text = File.read(file_name)
+            new_contents = text.gsub(/gem 'turbolinks'/, "# gem 'turbolinks'")
+            File.open(file_name, "w") {|file| file.puts new_contents }
+          end
+              </code>
+            </pre>
+            <p>
+              Finally, the more challenging of the three methods, was removing the line in <code class="language-">app/assests/javascripts/application.js</code>, as it involved Ruby’s <code class="language-ruby">Tempfile</code> object.
+            </p>
+            <pre>
+              <code class="language-ruby">
+
+          require 'tempfile'
+
+            def remove_turbolinks_from_application_js
+              # Open temporary file
+              tmp = Tempfile.new("extract")
+              # Write good lines to temporary file
+              open('app/assets/javascripts/application.js', 'r').each { |l| tmp << l unless l.chomp == '//= require turbolinks' }
+              # Close tmp, or troubles ahead
+              tmp.close
+              # Move temp file to origin
+              FileUtils.mv(tmp.path, 'app/assets/javascripts/application.js')
+            end
+              </code>
+            </pre>
+            <p>
+              Nothing too crazy here, and after a few test runs I was able to remove Turbolinks from a Rails app by executing this file from the root of the rails app.  Simple enough right?  Just take this file, copy it into the root of my app, execute the file (with lines added after the methods to call said methods), and then delete it from the app (or add it to the .gitignore).  Yikes…I’ll have to do that for every app I make ad nauseam.  Which made me think: <span class="meta">There must be a better way...a gem!  Gems magically do things for you in apps, I’ll make this a gem.  How do I make a gem?</span>
+            </p>
+            <p>
+              So I asked around, and my instructor/mentor/colleague, <a href="https://github.com/masonfmatthews">Mason Matthews</a>, pointed me towards the gem <a href="https://github.com/technicalpickles/jeweler">Jeweler</a>.  A gem to make a gem.  Pretty meta.  Reading the Jeweler docs as well as <a href="http://guides.rubygems.org/make-your-own-gem/#your-first-gem">this article</a> from <a href="https://rubygems.org/">Rubygems.org</a> I made a gem.  But how do I run that gem once it’s installed? Reading the <a href="http://guides.rubyonrails.org/generators.html">Rails Docs</a> (hopefully you’re seeing a common theme here…read the docs) I found out that when a Rails generator is run, all public methods in the generator are executed.  This solved my problem of executing the code, but I needed to make a Rails generator.  Yeah, a generator like <code class="language-ruby">rails generate controller</code>, but for <span class="meta">MY</span> gem.  Cool! Here’s how I made the gem a custom generator:
+            </p>
+            <pre>
+              <code class="language-ruby">
+
+          class RemoveTlGenerator < Rails::Generators::Base
+            #insert methods here
+          end
+              </code>
+            </pre>
+            <p>
+              That’s it.  Just create a class that is named appropriately and let it inherit from the <code class="language-ruby">Rails::Generator::Base</code> and you’re all set.  As for the magic naming...this allowed me to execute the following command from the command line and run my gem’s code via <code class="language-ruby">rails generate remove_tl</code>. But the naming - <span class="meta">remove_tl</span> - really?!?  That naming isn’t the best.  Well, near the end of the process I searched Rubygems and found that someone else had already <a href="https://github.com/RyanNielson/remove_turbolinks">created a gem to do the exact same thing as me</a>.  And he got the better name!  Oh well, I’ve come this far so I’m going to finish and publish my gem to Rubygems.  Besides, I learned some cool things along the way.
+            </p>
+            <p>
+              Jeweler allowed me to locally install my gem and test it before releasing it on Rubygems.  And then Jeweler has a rake command to release the gem to the world <code class="language-ruby">rake release</code>.  Classy.
+            </p>
+            <p>
+              And voila…<a href="https://github.com/jmbuscemi/remove_tl">my gem to remove Turblinks</a> can be used by anyone.  In fact, in the 5 weeks since I released it there have been 513 downloads.  That's pretty cool!  Hopefully I'll figure out another gem to write in the future, and next time I'll be ready to write it quicker.
+            </p>
           </div>
         </div>
       </div>
