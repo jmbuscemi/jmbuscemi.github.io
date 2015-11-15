@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>John Buscemi</title>
+    <!-- Custom CSS -->
+    <link href="/stylesheets/stylish-portfolio.css" rel="stylesheet">
+    <link href="/stylesheets/clean-blog.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <!-- Prism Syntax Highlighting CSS -->
+    <link href="/stylesheets/prism.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header navbar-right">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span><i class="fa fa-bars"></i></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img id="user-gravatar"
+                src="https://secure.gravatar.com/avatar/e62b2bcd559ee632b9551c0f0958a74a.png?d=retro&amp;r=PG&amp;s=80"
+                alt="E62b2bcd559ee632b9551c0f0958a74a">
+          </a>
+          <a class="navbar-brand" href="/">
+            JMB
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse spy-active">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#portfolio">Work</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            <li class="active"><a href="/blog">Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="top" class="intro-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Creating a Ruby Gem</h1>
+              <h2 class="subheading">
+                How I solved my (repetitive) Turbolinks issues and created my own rails generator in the process
+              </h2>
+              <span class="meta">Posted by <a href="#contact">John Buscemi</a> on November 15, 2015</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p>From the <a href="https://github.com/rails/turbolinks">Turbolinks Repo</a>
+              <blockquote>
+                Turbolinks makes following links in your web application faster.  Instead of letting the browser recompile the JavaScript and CSS between each page change, it keeps the current page instance alive and replaces only the body (or parts of) and the title in the head.  Think CGI vs persistent process.
+              </blockquote>
+            </p>
+            <p>
+              That's pretty cool.  Turbolinks is doing some fascinating things.  But here’s my problem: at this stage in my career as a developer, whether I’m writing the JS or a colleague is…Turbolinks seems to break our code.  Well, to give credit where it’s due, Turbolinks is doing what it’s supposed to but, as a result, our code is behaving in an unexpected way.  And someday I’ll really grind through the Turbolinks docs and make my JS work with Turbolinks.
+            </p>
+            <p>
+              But for now, in every rails app I make I <a href="http://blog.steveklabnik.com/posts/2013-06-25-removing-turbolinks-from-rails-4">remove Turbolinks</a>. Easy enough when you have to do that once.  But I found myself doing that over and over, sometimes forgetting one step, then double checking to make sure I didn’t miss a step.  This process is ripe for human error and is not DRY at all.  In fact, whenever I do something twice when writing code I immediately think: <span class="meta">“John, you’ve done this before.  Do you think it’s necessary to do it again?”</span> Most of the time, the answer to that question is a resounding <span class="meta">“Nope.”</span>
+            </p>
+            <p>
+              In the case of removing Turbolinks from my rails apps, it was a matter of writing a shell script (or something similar) to manipulate the files within an app.  Basically take those three steps from Steve Klabnik’s blog post and automate them with code.  I can even take it a step further and write Ruby code that executes terminal commands.  For instance, one of my duties as a TA was to grade student challenges.  To do so, I had to create executable ruby files from Gists submitted by students.  So rather than doing this:
+              <pre>
+                <code class="language-bash">
+
+          mkdir challenge_name
+          touch studentname_challenge_name.rb
+                </code>
+              </pre>
+            </p>
+            <p>
+              repeatedly for each student name, day after day, for every challenge that the students completed, I wrote the following code:
+            </p>
+            <pre>
+              <code class="language-ruby">
+
+          def create_files(challenge)
+            `mkdir #{challenge}`
+            names = [“Bob”, “Sarah”, “Jim”, “Alex”,
+                     “Jessie”, “Tim”, “Lauren”]
+            names.length.times do |i|
+              `touch ./#{challenge}/#{names[i].downcase}_#{challenge}.rb`
+            end
+          end
+
+          create_files(ARGV[0])
+              </code>
+            </pre>
+            <p>
+              Then I just execute the file in the terminal, passing it an argument of that day’s challenge name like so:
+            </p>
+            <pre>
+              <code class="language-bash">
+
+          ruby create_files.rb challenge_name
+              </code>
+            </pre>
+            <p>
+              And that give me a folder populated with files ready to have the students’ Gists pasted in so that I can run their code.  Of course, having their names in the file is a little code smelly since it’ll need to be changed for a new class of students, or if the current class changes.  And I still need to figure out how to automate populating each file with the Gists, but it’s simple enough now and I learned how to pass an argument from the terminal into a method in Ruby.  Neat!
+            </p>
+            <h2 class="section-heading">But I digress...back to the Gem!</h2>
+            <p>
+              So I began to research shell commands to remove text from files, add text to files, save changed files, etc.  And found myself wondering why I was even putting terminal commands into a Ruby file and mixing languages.  Can’t Ruby just do that type of stuff for me?  Yes.  The answer is yes.  Here’s how I solved those problems in ruby.
+            </p>
+            <p>
+              First I removed references to Turbolinks from <code class="language-">views/layout/application.html.erb</code> and commented out the gem in the <code class="language-">Gemfile</code>.  This basically boils down to a opening a file, replacing text with a <code class="language-ruby">gsub</code>, and saving the file.
+            </p>
+            <pre>
+              <code class="language-ruby">
+
+          def remove_turbolinks_from_layout
+            file_name = './app/views/layouts/application.html.erb'
+            text = File.read(file_name)
+            new_contents = text.gsub(/, 'data-turbolinks-track' => true/, "")
+            #Write changes to the file:
+            File.open(file_name, "w") {|file| file.puts new_contents }
+          end
+
+          def remove_turbolinks_from_gemfile
+            file_name = './Gemfile'
+            text = File.read(file_name)
+            new_contents = text.gsub(/gem 'turbolinks'/, "# gem 'turbolinks'")
+            File.open(file_name, "w") {|file| file.puts new_contents }
+          end
+              </code>
+            </pre>
+            <p>
+              Finally, the more challenging of the three methods, was removing the line in <code class="language-">app/assests/javascripts/application.js</code>, as it involved Ruby’s <code class="language-ruby">Tempfile</code> object.
+            </p>
+            <pre>
+              <code class="language-ruby">
+
+          require 'tempfile'
+
+            def remove_turbolinks_from_application_js
+              # Open temporary file
+              tmp = Tempfile.new("extract")
+              # Write good lines to temporary file
+              open('app/assets/javascripts/application.js', 'r').each { |l| tmp << l unless l.chomp == '//= require turbolinks' }
+              # Close tmp, or troubles ahead
+              tmp.close
+              # Move temp file to origin
+              FileUtils.mv(tmp.path, 'app/assets/javascripts/application.js')
+            end
+              </code>
+            </pre>
+            <p>
+              Nothing too crazy here, and after a few test runs I was able to remove Turbolinks from a Rails app by executing this file from the root of the rails app.  Simple enough right?  Just take this file, copy it into the root of my app, execute the file (with lines added after the methods to call said methods), and then delete it from the app (or add it to the .gitignore).  Yikes…I’ll have to do that for every app I make ad nauseam.  Which made me think: <span class="meta">There must be a better way...a gem!  Gems magically do things for you in apps, I’ll make this a gem.  How do I make a gem?</span>
+            </p>
+            <p>
+              So I asked around, and my instructor/mentor/colleague, <a href="https://github.com/masonfmatthews">Mason Matthews</a>, pointed me towards the gem <a href="https://github.com/technicalpickles/jeweler">Jeweler</a>.  A gem to make a gem.  Pretty meta.  Reading the Jeweler docs as well as <a href="http://guides.rubygems.org/make-your-own-gem/#your-first-gem">this article</a> from <a href="https://rubygems.org/">Rubygems.org</a> I made a gem.  But how do I run that gem once it’s installed? Reading the <a href="http://guides.rubyonrails.org/generators.html">Rails Docs</a> (hopefully you’re seeing a common theme here…read the docs) I found out that when a Rails generator is run, all public methods in the generator are executed.  This solved my problem of executing the code, but I needed to make a Rails generator.  Yeah, a generator like <code class="language-ruby">rails generate controller</code>, but for <span class="meta">MY</span> gem.  Cool! Here’s how I made the gem a custom generator:
+            </p>
+            <pre>
+              <code class="language-ruby">
+
+          class RemoveTlGenerator < Rails::Generators::Base
+            #insert methods here
+          end
+              </code>
+            </pre>
+            <p>
+              That’s it.  Just create a class that is named appropriately and let it inherit from the <code class="language-ruby">Rails::Generator::Base</code> and you’re all set.  As for the magic naming...this allowed me to execute the following command from the command line and run my gem’s code via <code class="language-ruby">rails generate remove_tl</code>. But the naming - <span class="meta">remove_tl</span> - really?!?  That naming isn’t the best.  Well, near the end of the process I searched Rubygems and found that someone else had already <a href="https://github.com/RyanNielson/remove_turbolinks">created a gem to do the exact same thing as me</a>.  And he got the better name!  Oh well, I’ve come this far so I’m going to finish and publish my gem to Rubygems.  Besides, I learned some cool things along the way.
+            </p>
+            <p>
+              Jeweler allowed me to locally install my gem and test it before releasing it on Rubygems.  And then Jeweler has a rake command to release the gem to the world <code class="language-ruby">rake release</code>.  Classy.
+            </p>
+            <p>
+              And voila…<a href="https://github.com/jmbuscemi/remove_tl">my gem to remove Turblinks</a> can be used by anyone.  In fact, in the 5 weeks since I released it there have been 513 downloads.  That's pretty cool!  Hopefully I'll figure out another gem to write in the future, and next time I'll be ready to write it quicker.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 text-center">
+            <h4 id="contact"><strong>John M Buscemi</strong></h4>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:jmbuscemi@gmail.com">jmbuscemi@gmail.com</a></li>
+            </ul>
+            <br>
+            <ul class="list-inline">
+              <li>
+                <a href="https://github.com/jmbuscemi" target="_blank"><i id="contact-link" class="fa fa-github fa-fw fa-3x"></i></a>
+              </li>
+              <li>
+                <a href="https://www.twitter.com/jmbuscemi" target="_blank"><i id="contact-link" class="fa fa-twitter fa-fw fa-3x"></i></a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/jmbuscemi" target="_blank"><i id="contact-link" class="fa fa-linkedin fa-fw fa-3x"></i></a>
+              </li>
+            </ul>
+            <hr class="small">
+            <p class="copyright text-muted"><i class="fa fa-copyright"></i> John M Buscemi 2015</p>
+          </div><!-- /.col-lg-10 -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/js/vendor/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/vendor/bootstrap.min.js"></script>
+    <!-- Prism.js -->
+    <script src="/js/vendor/prism.js"></script>
+    <!-- Custom Javascript -->
+    <script src="/js/main.js"></script>
+  </body>
+</html>

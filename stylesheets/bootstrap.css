@@ -13,7 +13,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -1107,8 +1107,8 @@ a {
 }
 a:hover,
 a:focus {
-  color: #0ce3ac;
-  text-decoration: underline;
+  color: rgba(12, 227, 172, 0.4);
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;
