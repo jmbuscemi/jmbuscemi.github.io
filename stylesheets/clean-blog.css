@@ -20,6 +20,7 @@ article p {
   text-align: justify;
   position: relative;
 }
+
 p a {
   text-decoration: none;
 }
@@ -368,6 +369,9 @@ form .row:first-child .floating-label-form-group {
   padding: 15px 25px;
   background-color: #0ce3ac;
   border-radius: 0;
+}
+#first-paragraph {
+  margin-top: 0px !important;
 }
 ::-moz-selection {
   color: white;
