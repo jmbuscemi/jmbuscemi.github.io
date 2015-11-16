@@ -45,7 +45,7 @@ a img:focus {
   cursor: pointer;
 }
 blockquote {
-  color: #808080;
+  color: #999999;
   font-style: italic;
 }
 hr.large {
@@ -209,7 +209,7 @@ hr.large {
   font-size: 20px;
 }
 .intro-header .post-heading span, article .meta {
-  color: #808080;
+  color: #999999;
 }
 .intro-header .post-heading .meta a {
   color: #0ce3ac;

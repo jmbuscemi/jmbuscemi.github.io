@@ -4930,6 +4930,8 @@ a.label:focus {
 }
 .label-default {
   background-color: #464545;
+  font-weight: 300;
+  letter-spacing: .05em;
 }
 .label-default[href]:hover,
 .label-default[href]:focus {
