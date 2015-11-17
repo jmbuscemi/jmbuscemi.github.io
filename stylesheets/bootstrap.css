@@ -1102,7 +1102,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #0ce3ac;
+  color: #00bc8c;
   text-decoration: none;
 }
 a:hover,
@@ -1344,7 +1344,7 @@ mark,
   color: #999999;
 }
 .text-primary {
-  color: #0ce3ac;
+  color: #00bc8c;
 }
 a.text-primary:hover,
 a.text-primary:focus {
@@ -3460,7 +3460,7 @@ fieldset[disabled] .btn-danger.active {
   background-color: #ffffff;
 }
 .btn-link {
-  color: #0ce3ac;
+  color: #00bc8c;
   font-weight: normal;
   border-radius: 0;
 }
@@ -3481,7 +3481,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #0ce3ac;
+  color: #00bc8c;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4060,7 +4060,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #303030;
-  border-color: #0ce3ac;
+  border-color: #00bc8c;
 }
 .nav .nav-divider {
   height: 1px;
@@ -5079,7 +5079,7 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #0ce3ac;
+  border-color: #00bc8c;
 }
 .thumbnail .caption {
   padding: 9px;
@@ -5325,7 +5325,7 @@ a.thumbnail.active {
 }
 a.list-group-item,
 button.list-group-item {
-  color: #0ce3ac;
+  color: #00bc8c;
 }
 a.list-group-item .list-group-item-heading,
 button.list-group-item .list-group-item-heading {
@@ -5336,7 +5336,7 @@ button.list-group-item:hover,
 a.list-group-item:focus,
 button.list-group-item:focus {
   text-decoration: none;
-  color: #0ce3ac;
+  color: #00bc8c;
   background-color: transparent;
 }
 button.list-group-item {
@@ -6849,7 +6849,7 @@ button.close {
 }
 .text-primary,
 .text-primary:hover {
-  color: #0ce3ac;
+  color: #00bc8c;
 }
 .text-success,
 .text-success:hover {

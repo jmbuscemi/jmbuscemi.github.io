@@ -212,7 +212,7 @@ hr.large {
   color: #999999;
 }
 .intro-header .post-heading .meta a {
-  color: #0ce3ac;
+  color: #00bc8c;
   text-decoration: none;
 }
 .intro-header .post-heading .meta a:hover {
@@ -344,10 +344,8 @@ form .row:first-child .floating-label-form-group {
 }
 .btn {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
   font-size: 14px;
   font-weight: 800;
-  letter-spacing: 1px;
   border-radius: 0;
   padding: 15px 25px;
 }
@@ -367,11 +365,21 @@ form .row:first-child .floating-label-form-group {
   font-weight: 500;
   letter-spacing: 1px;
   padding: 15px 25px;
-  background-color: #0ce3ac;
+  background-color: #00bc8c;
   border-radius: 0;
 }
 #first-paragraph {
   margin-top: 0px !important;
+}
+#twitter-share {
+  border-radius: 50%;
+  color: #0085a1;
+  margin-left: 45%;
+  margin-right: 50%;
+}
+#twitter-share:hover{
+  cursor: pointer;
+  color: rgba(0, 97, 117, 0.90);
 }
 ::-moz-selection {
   color: white;
