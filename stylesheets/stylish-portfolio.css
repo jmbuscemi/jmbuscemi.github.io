@@ -263,3 +263,8 @@ footer {
   position: relative;
   display: inline;
 }
+
+#red_hat{
+  color: #CC0000;
+  font-weight: 500;
+}
