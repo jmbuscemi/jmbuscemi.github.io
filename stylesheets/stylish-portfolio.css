@@ -262,9 +262,15 @@ footer {
 .spacer {
   position: relative;
   display: inline;
+  padding: 0 7px;
 }
 
 #red_hat{
   color: #CC0000;
+  font-weight: 500;
+}
+
+#tiy_link {
+  color: #222222;
   font-weight: 500;
 }
